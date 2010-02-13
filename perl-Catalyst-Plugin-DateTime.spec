@@ -1,27 +1,24 @@
-%define module	Catalyst-Plugin-DateTime
-%define name	perl-%{module}
-%define	modprefix Catalyst
+%define upstream_name	Catalyst-Plugin-DateTime
+%define upstream_version 0.03
 
-%define version 0.03
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
 
-%define	rel	5
-%define release %mkrel %{rel}
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
 Summary:	DateTime plugin for Catalyst
-License:	GPL or Artistic
+License:	GPL+ or Artistic
 Group:		Development/Perl
-Source:		ftp://ftp.perl.org/pub/CPAN/modules/by-module/%{modprefix}/%{module}-%{version}.tar.bz2
-Url:		http://search.cpan.org/dist/%{module}/
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+Url:		http://search.cpan.org/dist/%{upstream_name}/
+Source0:	ftp://ftp.perl.org/pub/CPAN/modules/by-module/Catalyst/%{upstream_name}-%{upstream_version}.tar.bz2
+
 %if %{mdkversion} < 1010
 Buildrequires:	perl-devel
 %endif
-BuildRequires:	perl(Catalyst) >= 2.99
-BuildRequires:	perl(DateTime) >= 0.20
+BuildRequires:	perl(Catalyst) >= 2.990.0
+BuildRequires:	perl(DateTime) >= 0.200.0
+
 Buildarch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This module's intention is to make the wonders of DateTime easily
@@ -32,12 +29,12 @@ It adds the methods datetime and dt to the Catalyst namespace.
 
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor <<EOF
 EOF
-%__make
+%make
 
 %check
 ## scottk ##
@@ -57,5 +54,4 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc Changes README
 %{_mandir}/*/*
-%{perl_vendorlib}/%{modprefix}
-
+%{perl_vendorlib}/Catalyst
