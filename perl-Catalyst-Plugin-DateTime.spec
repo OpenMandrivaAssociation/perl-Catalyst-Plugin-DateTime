@@ -1,15 +1,13 @@
 %define upstream_name	Catalyst-Plugin-DateTime
-%define upstream_version 0.03
-
 Name:		perl-%{upstream_name}
-Version:	%{upstream_version}
-Release:	6
+Version:	0.03
+Release:	7
 
 Summary:	DateTime plugin for Catalyst
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		https://metacpan.org/dist/Catalyst-Plugin-DateTime
-Source0:	https://cpan.metacpan.org/authors/id/J/JK/JKISER/Catalyst-Plugin-DateTime-0.03.tgz-%{upstream_version}.tgz
+Source0:	https://cpan.metacpan.org/authors/id/J/JK/JKISER/Catalyst-Plugin-DateTime-0.03.tgz-%{version}.tgz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
@@ -27,7 +25,7 @@ It adds the methods datetime and dt to the Catalyst namespace.
 
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor <<EOF
@@ -57,9 +55,7 @@ EOF
 
 * Sat Feb 13 2010 Jérôme Quelin <jquelin@mandriva.org> 0.30.0-1mdv2011.0
 + Revision: 505419
-- rebuild using %%perl_convert_version
-
-* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0.03-5mdv2010.0
+- rebuild using %0.03 Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0.03-5mdv2010.0
 + Revision: 430270
 - rebuild
 
